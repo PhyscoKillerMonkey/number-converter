@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Number Converter</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1, shrink-to-fit="no">
+
+    <link rel="stylesheet" href="styles/bootstrap-reboot.css">
+    <link rel="stylesheet" href="styles/master.css">
+  </head>
+  <body>
+    
+    <div id="container">
+      <h1>Number Converter</h1>
+
+      <div>
+        <label>Int</label>
+        <input id="int" type="number">
+      </div>
+      
+      <div>
+        <label>Bin</label>
+        <input id="bin" type="numer" min=0>
+      </div>
+      
+      <div>
+        <label>Hex</label>
+        <input id="hex" type="text" min=0 pattern="/^[0-9A-F]{1,4}$/i">
+      </div>
+    </div>
+
+    <script src="javascripts/converter.js"></script>
+  </body>
+</html>
