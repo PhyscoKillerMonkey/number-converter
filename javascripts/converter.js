@@ -1,8 +1,9 @@
 const inputs = document.getElementsByTagName("input");
 
-const numChars = "0123456789";
-const hexChars = numChars + "abcdefABCDEF";
-const binChars = "01";
+const otherChars = ["Delete", "Backspace", "ArrowLeft", "ArrowRight", "Home", "End"];
+const numChars = otherChars.concat(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
+const hexChars = numChars.concat(["a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F"]);
+const binChars = otherChars.concat(["0", "1"]);
 
 for (el of inputs) {
   el.oninput = function() {
