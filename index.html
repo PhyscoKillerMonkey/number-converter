@@ -20,12 +20,12 @@
       
       <div>
         <label>Bin</label>
-        <input id="bin" type="numer" min=0>
+        <input id="bin" type="numer" onkeypress="return binChars.includes(event.key)">
       </div>
       
       <div>
         <label>Hex</label>
-        <input id="hex" type="text" min=0 pattern="/^[0-9A-F]{1,4}$/i">
+        <input id="hex" type="text" onkeypress="return hexChars.includes(event.key)">
       </div>
     </div>
 

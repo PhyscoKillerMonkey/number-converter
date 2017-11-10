@@ -1,5 +1,9 @@
 const inputs = document.getElementsByTagName("input");
 
+const numChars = "0123456789";
+const hexChars = numChars + "abcdefABCDEF";
+const binChars = "01";
+
 for (el of inputs) {
   el.oninput = function() {
 
@@ -36,4 +40,21 @@ for (el of inputs) {
       }
     }
   }
+}
+
+// string.includes() polyfill
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+if (!String.prototype.includes) {
+  String.prototype.includes = function(search, start) {
+    'use strict';
+    if (typeof start !== 'number') {
+      start = 0;
+    }
+    
+    if (start + search.length > this.length) {
+      return false;
+    } else {
+      return this.indexOf(search, start) !== -1;
+    }
+  };
 }
