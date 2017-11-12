@@ -5,57 +5,49 @@ const numChars = otherChars.concat(["0", "1", "2", "3", "4", "5", "6", "7", "8",
 const hexChars = numChars.concat(["a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F"]);
 const binChars = otherChars.concat(["0", "1"]);
 
-for (el of inputs) {
-  el.oninput = function() {
+// Iterate all <input> elements
+for (let i = 0; i < inputs.length; i++) {
+  let el = inputs[i];
 
-    let value = this.value;
+  // When the <input> receives any input (typing & copy/paste)
+  el.oninput = function(event) {
 
-    if (value != "") {
+    if (this.value == "") {
+      for (let j = 0; j < inputs.length; j++) {
+        inputs[j].value = "";
+      }
+
+    } else {
+      // Parse the value of the changed <input> to base 10
       switch(this.id) {
+        case "int":
+          value = parseInt(this.value, 10);
+          break;
         case "bin":
-          value = parseInt(value, 2);
+          value = parseInt(this.value, 2);
           break;
         case "hex":
-          value = parseInt(value, 16);
+          value = parseInt(this.value, 16);
           break;
       }
-  
-      for (el of inputs) {
-        if (this != el) {
-          switch(el.id) {
+    
+      // Convert to other bases and put into other inputs
+      for (let j = 0; j < inputs.length; j++) {
+        let el2 = inputs[j];
+        if (el2 != el) {
+          switch(el2.id) {
             case "int":
-              el.value = (+value).toString(10);
+              el2.value = value.toString(10);
               break;
             case "bin":
-              el.value = (+value).toString(2);
+              el2.value = value.toString(2);
               break;
             case "hex":
-              el.value = (+value).toString(16).toUpperCase();
+              el2.value = value.toString(16).toUpperCase();
               break;
           }
         }
       }
-    } else {
-      for (el of inputs) {
-        el.value = value;
-      }
     }
   }
-}
-
-// string.includes() polyfill
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
-if (!String.prototype.includes) {
-  String.prototype.includes = function(search, start) {
-    'use strict';
-    if (typeof start !== 'number') {
-      start = 0;
-    }
-    
-    if (start + search.length > this.length) {
-      return false;
-    } else {
-      return this.indexOf(search, start) !== -1;
-    }
-  };
 }
